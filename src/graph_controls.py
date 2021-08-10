@@ -23,12 +23,12 @@ def graph_controls(chart_type, df, dropdown_options, template):
         try:
             x_values = st.sidebar.selectbox('X axis', index=length_of_options,options=dropdown_options)
             y_values = st.sidebar.selectbox('Y axis',index=length_of_options, options=dropdown_options)
-            color_value = st.sidebar.selectbox("Color", index=length_of_options,options=dropdown_options)
+            color_value = st.sidebar.selectbox("Color:categorical", index=length_of_options,options=dropdown_options)
             #symbol_value = st.sidebar.selectbox("Symbol",index=length_of_options, options=dropdown_options)
             #size_value = st.sidebar.selectbox("Size", index=length_of_options,options=dropdown_options)
             #hover_name_value = st.sidebar.selectbox("Hover name", index=length_of_options,options=dropdown_options)
-            facet_row_value = st.sidebar.selectbox("Facet row",index=length_of_options, options=dropdown_options,)
-            facet_column_value = st.sidebar.selectbox("Facet column", index=length_of_options,
+            #facet_row_value = st.sidebar.selectbox("Facet row",index=length_of_options, options=dropdown_options,)
+            facet_column_value = st.sidebar.selectbox("Facet column:Categorical", index=length_of_options,
                                                       options=dropdown_options)
             #marginalx = st.sidebar.selectbox("Marginal X", index=2,options=['rug', 'box', None,
             #                                                             'violin', 'histogram'])
@@ -61,29 +61,34 @@ def graph_controls(chart_type, df, dropdown_options, template):
             nbins = st.sidebar.number_input(label='Number of bins', min_value=2, value=5)
             color_value = st.sidebar.selectbox("Color", index=length_of_options,options=dropdown_options)
 
-            barmode = st.sidebar.selectbox('bar mode', options=['group', 'overlay','relative'], index=2)
-            marginal = st.sidebar.selectbox("Marginal", index=2,options=['rug', 'box', None,
-                                                                         'violin', 'histogram'])
-            barnorm = st.sidebar.selectbox('Bar norm', options=[None, 'fraction', 'percent'], index=0)
+            #barmode = st.sidebar.selectbox('bar mode', options=['group', 'overlay','relative'], index=2)
+            #marginal = st.sidebar.selectbox("Marginal", index=2,options=['rug', 'box', None,
+            #                                                             'violin', 'histogram'])
+            #barnorm = st.sidebar.selectbox('Bar norm', options=[None, 'fraction', 'percent'], index=0)
             hist_func = st.sidebar.selectbox('Histogram aggregation function', index=0,
                                              options=['count','sum', 'avg', 'min', 'max'])
             histnorm = st.sidebar.selectbox('Hist norm', options=[None, 'percent', 'probability', 'density',
                                                                   'probability density'], index=0)
-            hover_name_value = st.sidebar.selectbox("Hover name", index=length_of_options,options=dropdown_options)
-            facet_row_value = st.sidebar.selectbox("Facet row",index=length_of_options, options=dropdown_options,)
-            facet_column_value = st.sidebar.selectbox("Facet column", index=length_of_options,
-                                                      options=dropdown_options)
+            #hover_name_value = st.sidebar.selectbox("Hover name", index=length_of_options,options=dropdown_options)
+            #facet_row_value = st.sidebar.selectbox("Facet row",index=length_of_options, options=dropdown_options,)
+            #facet_column_value = st.sidebar.selectbox("Facet column", index=length_of_options,
+                                                     #options=dropdown_options)
             cummulative = st.sidebar.selectbox('Cummulative', options=[False, True])
-            log_x = st.sidebar.selectbox('Log axis on x', options=[True, False])
-            log_y = st.sidebar.selectbox('Log axis on y', options=[True, False])
+            #log_x = st.sidebar.selectbox('Log axis on x', options=[False, True])
+            #log_y = st.sidebar.selectbox('Log axis on y', options=[False, True])
             title = st.sidebar.text_input(label='Title of chart')
             plot = px.histogram(data_frame=df,barmode=barmode,histnorm=histnorm,
-                                marginal=marginal,barnorm=barnorm,histfunc=hist_func,
+                                #marginal=marginal,
+                                barnorm=barnorm,
+                                #histfunc=hist_func,
                                 x=x_values,y=y_values,cumulative=cummulative,
-                                color=color_value,hover_name=hover_name_value,
+                                color=color_value,
+                                #hover_name=hover_name_value,
                                 facet_row=facet_row_value,nbins=nbins,
-                                facet_col=facet_column_value,log_x=log_x,
-                                log_y=log_y,template=template, title=title)
+                                facet_col=facet_column_value,
+                                #log_x=log_x,
+                                #log_y=log_y,
+                                template=template, title=title)
 
         except Exception as e:
             print(e)
@@ -126,22 +131,25 @@ def graph_controls(chart_type, df, dropdown_options, template):
             x_values = st.sidebar.selectbox('X axis', index=length_of_options,options=dropdown_options)
             y_values = st.sidebar.selectbox('Y axis',index=length_of_options, options=dropdown_options)
             color_value = st.sidebar.selectbox("Color", index=length_of_options,options=dropdown_options)
-            violinmode = st.sidebar.selectbox('Violin mode', options=['group', 'overlay'])
-            box = st.sidebar.selectbox("Show box", options=[False, True])
+            #violinmode = st.sidebar.selectbox('Violin mode', options=['group', 'overlay'])
+            #box = st.sidebar.selectbox("Show box", options=[False, True])
             outliers = st.sidebar.selectbox('Show points', options=[False, 'all', 'outliers', 'suspectedoutliers'])
-            hover_name_value = st.sidebar.selectbox("Hover name", index=length_of_options,options=dropdown_options)
-            facet_row_value = st.sidebar.selectbox("Facet row",index=length_of_options, options=dropdown_options,)
+            #hover_name_value = st.sidebar.selectbox("Hover name", index=length_of_options,options=dropdown_options)
+            #facet_row_value = st.sidebar.selectbox("Facet row",index=length_of_options, options=dropdown_options,)
             facet_column_value = st.sidebar.selectbox("Facet column", index=length_of_options,
                                                       options=dropdown_options)
-            log_x = st.sidebar.selectbox('Log axis on x', options=[True, False])
-            log_y = st.sidebar.selectbox('Log axis on y', options=[True, False])
+            log_x = st.sidebar.selectbox('Log axis on x', options=[False,True])
+            log_y = st.sidebar.selectbox('Log axis on y', options=[False,True])
             title = st.sidebar.text_input(label='Title of chart')
             plot = px.violin(data_frame=df,x=x_values,
                              y=y_values,color=color_value,
-                             hover_name=hover_name_value,
-                             facet_row=facet_row_value,
-                             facet_col=facet_column_value,box=box,
-                             log_x=log_x, log_y=log_y,violinmode=violinmode,points=outliers,
+                             #hover_name=hover_name_value,
+                             #facet_row=facet_row_value,
+                             facet_col=facet_column_value,
+                             #box=box,
+                             log_x=log_x, log_y=log_y,
+                             #violinmode=violinmode,
+                             points=outliers,
                              template=template, title=title)
 
         except Exception as e:
@@ -154,21 +162,23 @@ def graph_controls(chart_type, df, dropdown_options, template):
             x_values = st.sidebar.selectbox('X axis', index=length_of_options, options=dropdown_options)
             y_values = st.sidebar.selectbox('Y axis', index=length_of_options, options=dropdown_options)
             color_value = st.sidebar.selectbox("Color", index=length_of_options, options=dropdown_options)
-            boxmode = st.sidebar.selectbox('Violin mode', options=['group', 'overlay'])
+            #boxmode = st.sidebar.selectbox('Violin mode', options=['group', 'overlay'])
             outliers = st.sidebar.selectbox('Show outliers', options=[False, 'all', 'outliers', 'suspectedoutliers'])
-            hover_name_value = st.sidebar.selectbox("Hover name", index=length_of_options, options=dropdown_options)
-            facet_row_value = st.sidebar.selectbox("Facet row", index=length_of_options, options=dropdown_options, )
+            #hover_name_value = st.sidebar.selectbox("Hover name", index=length_of_options, options=dropdown_options)
+            #facet_row_value = st.sidebar.selectbox("Facet row", index=length_of_options, options=dropdown_options, )
             facet_column_value = st.sidebar.selectbox("Facet column", index=length_of_options,
                                                       options=dropdown_options)
-            log_x = st.sidebar.selectbox('Log axis on x', options=[True, False])
-            log_y = st.sidebar.selectbox('Log axis on y', options=[True, False])
-            notched = st.sidebar.selectbox('Notched', options=[True, False])
+            log_x = st.sidebar.selectbox('Log axis on x', options=[False, True])
+            log_y = st.sidebar.selectbox('Log axis on y', options=[False, True])
+            notched = st.sidebar.selectbox('Notched', options=[False, True])
             title = st.sidebar.text_input(label='Title of chart')
             plot = px.box(data_frame=df, x=x_values,
                           y=y_values, color=color_value,
-                          hover_name=hover_name_value,facet_row=facet_row_value,
+                          #hover_name=hover_name_value,facet_row=facet_row_value,
                           facet_col=facet_column_value, notched=notched,
-                          log_x=log_x, log_y=log_y, boxmode=boxmode, points=outliers,
+                          log_x=log_x, log_y=log_y, 
+                          #boxmode=boxmode, 
+                          points=outliers,
                           template=template, title=title)
 
         except Exception as e:
@@ -211,7 +221,7 @@ def graph_controls(chart_type, df, dropdown_options, template):
             name_value = st.sidebar.selectbox(label='Name (Selected Column should be categorical)', options=dropdown_options)
             color_value = st.sidebar.selectbox(label='Color(Selected Column should be categorical)', options=dropdown_options)
             value = st.sidebar.selectbox("Value", index=length_of_options, options=dropdown_options)
-            hole = st.sidebar.selectbox('Log axis on y', options=[True, False])
+            hole = st.sidebar.selectbox('Log axis on y', options=[False, True])
             title = st.sidebar.text_input(label='Title of chart')
 
             plot = px.pie(data_frame=df,names=name_value,hole=hole,
