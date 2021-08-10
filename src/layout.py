@@ -35,15 +35,15 @@ def views(link):
                 except Exception as e:
                     print(e)
 
-            st.sidebar.subheader("Theme selection")
+            #st.sidebar.subheader("Theme selection")
 
-            theme_selection = st.sidebar.selectbox(label="Select your themes",
-                                                   options=['plotly', 
+            #theme_selection = st.sidebar.selectbox(label="Select your themes",
+                                                   #options=['plotly', 
                                                             #'plotly_white',
                                                             #'ggplot2',
-                                                            'seaborn',
+                                                           # 'seaborn',
                                                             #'simple_white'
-                                                           ])
+                                                          # ])
             st.sidebar.subheader("Chart selection")
             chart_type = st.sidebar.selectbox(label="Select your chart type.",
                                               options=['Scatter plots',
@@ -58,7 +58,9 @@ def views(link):
                                                        #'Tree maps',
                                                         ])  # 'Line plots',
 
-            graph_controls(chart_type=chart_type, df=df, dropdown_options=columns, template=theme_selection)
+            #graph_controls(chart_type=chart_type, df=df, dropdown_options=columns, template=theme_selection)
+            
+            graph_controls(chart_type=chart_type, df=df, dropdown_options=columns, template='plotly')
 
 
 
