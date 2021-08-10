@@ -46,10 +46,17 @@ def views(link):
                                                            ])
             st.sidebar.subheader("Chart selection")
             chart_type = st.sidebar.selectbox(label="Select your chart type.",
-                                              options=['Scatter plots', 'Density contour',
-                                                       'Sunburst','Pie Charts','Density heatmaps',
-                                                       'Histogram', 'Box plots','Tree maps',
-                                                       'Violin plots', ])  # 'Line plots',
+                                              options=['Scatter plots',
+                                                       'Box plots',
+                                                       'Violin plots',
+                                                       #'Density contour',
+                                                       #'Sunburst',
+                                                       'Pie Charts',
+                                                       #'Density heatmaps',
+                                                       #'Sunburst',
+                                                       'Histogram',
+                                                       #'Tree maps',
+                                                        ])  # 'Line plots',
 
             graph_controls(chart_type=chart_type, df=df, dropdown_options=columns, template=theme_selection)
 
