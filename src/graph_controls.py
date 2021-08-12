@@ -47,9 +47,10 @@ def graph_controls(chart_type, df, dropdown_options, template):
                               facet_row=facet_row_value,
                               facet_col=facet_column_value,
                               #log_x=log_x, log_y=log_y,marginal_y=marginaly, marginal_x=marginalx,
-                              #template=template,
-                              #title=title
-                             )
+                              template=template, title=title)
+        except Exception as e:
+            print(e)  
+           
 
     if chart_type == 'Histogram':
         st.sidebar.subheader("Histogram Settings")
@@ -88,7 +89,6 @@ def graph_controls(chart_type, df, dropdown_options, template):
                                 #log_x=log_x,
                                 #log_y=log_y,
                                 template=template, title=title)
-
         except Exception as e:
             print(e)
 
