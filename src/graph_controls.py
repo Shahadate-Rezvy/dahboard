@@ -26,27 +26,26 @@ def graph_controls(chart_type, df, dropdown_options, template):
             x_values = st.sidebar.selectbox('X axis', index=length_of_options,options=dropdown_options)
             y_values = st.sidebar.selectbox('Y axis',index=length_of_options, options=dropdown_options)
             color_value = st.sidebar.selectbox("Color", index=length_of_options,options=dropdown_options)
-            #symbol_value = st.sidebar.selectbox("Symbol",index=length_of_options, options=dropdown_options)
-            #size_value = st.sidebar.selectbox("Size", index=length_of_options,options=dropdown_options)
-            #hover_name_value = st.sidebar.selectbox("Hover name", index=length_of_options,options=dropdown_options)
+            symbol_value = st.sidebar.selectbox("Symbol",index=length_of_options, options=dropdown_options)
+            size_value = st.sidebar.selectbox("Size", index=length_of_options,options=dropdown_options)
+            hover_name_value = st.sidebar.selectbox("Hover name", index=length_of_options,options=dropdown_options)
             facet_row_value = st.sidebar.selectbox("Facet row",index=length_of_options, options=dropdown_options,)
             facet_column_value = st.sidebar.selectbox("Facet column", index=length_of_options,
                                                       options=dropdown_options)
-            
-            log_x = st.sidebar.selectbox('Log axis on x', options=[False, True])
-            log_y = st.sidebar.selectbox('Log axis on y', options=[False, True])
+           
+            log_x = st.sidebar.selectbox('Log axis on x', options=[False,True])
+            log_y = st.sidebar.selectbox('Log axis on y', options=[False,True])
             title = st.sidebar.text_input(label='Title of chart')
             plot = px.scatter(data_frame=df,
                               x=x_values,
                               y=y_values,
                               color=color_value,
-                              #symbol=symbol_value,
-                              #size=size_value,
-                              #hover_name=hover_name_value,
+                              symbol=symbol_value,
+                              size=size_value,
+                              hover_name=hover_name_value,
                               facet_row=facet_row_value,
                               facet_col=facet_column_value,
                               log_x=log_x, log_y=log_y,
-                              #marginal_y=marginaly, marginal_x=marginalx,
                               template=template, title=title)
 
         except Exception as e:
