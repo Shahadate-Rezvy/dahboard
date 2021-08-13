@@ -23,7 +23,7 @@ def graph_controls(chart_type, df, dropdown_options, template):
         try:
             x_values = st.sidebar.selectbox('X axis', index=length_of_options,options=dropdown_options)
             y_values = st.sidebar.selectbox('Y axis',index=length_of_options, options=dropdown_options)
-            color_value = st.sidebar.selectbox("Color", index=length_of_options,options=dropdown_options)
+            color_value = st.sidebar.selectbox(label='Color(Selected Column should be categorical)', options=dropdown_options)
             
             facet_row_value = st.sidebar.selectbox("Facet row",index=length_of_options, options=dropdown_options,)
             facet_column_value = st.sidebar.selectbox("Facet column", index=length_of_options,
@@ -215,9 +215,7 @@ def graph_controls(chart_type, df, dropdown_options, template):
         try:
             name_value = st.sidebar.selectbox(label='Name (Selected Column should be categorical)', options=dropdown_options)
             color_value = st.sidebar.selectbox(label='Color(Selected Column should be categorical)', options=dropdown_options)
-            value = st.sidebar.selectbox("Value", index=length_of_options, options=dropdown_options)
-            hole = st.sidebar.selectbox('Log axis on y', options=[False, True])
-            title = st.sidebar.text_input(label='Title of chart')
+            
 
             plot = px.pie(data_frame=df,names=name_value,hole=hole,
                           values=value,color=color_value, title=title)
