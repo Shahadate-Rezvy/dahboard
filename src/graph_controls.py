@@ -213,13 +213,16 @@ def graph_controls(chart_type, df, dropdown_options, template):
         try:
             name_value = st.sidebar.selectbox(label='Name (Selected Column should be categorical)', options=dropdown_options)
             color_value = st.sidebar.selectbox(label='Color(Selected Column should be categorical)', options=dropdown_options)
-            
+            value = st.sidebar.selectbox("Value", index=length_of_options, options=dropdown_options)
+            hole = st.sidebar.selectbox('Log axis on y', options=[True, False])
+            title = st.sidebar.text_input(label='Title of chart')
 
             plot = px.pie(data_frame=df,names=name_value,hole=hole,
                           values=value,color=color_value, title=title)
 
         except Exception as e:
             print(e)
+
 
     if chart_type == 'Density contour':
         st.sidebar.subheader("Density contour Settings")
