@@ -102,7 +102,7 @@ def graph_controls(chart_type, df, dropdown_options, template):
 
         try:
             x_values = st.sidebar.selectbox('X axis', index=length_of_options,options=['Site','Month'])
-            y_values = st.sidebar.selectbox(''Y axis', index=length_of_options, options=dropdown_options)
+            y_values = st.sidebar.selectbox('Y axis', index=length_of_options, options=dropdown_options)
             outliers = st.sidebar.selectbox('Show outliers', options=[False, 'all', 'outliers', 'suspectedoutliers'])
             #log_y = st.sidebar.selectbox('Log axis on y', options=[False, True])
             plot = px.box(data_frame=df, x=x_values,
