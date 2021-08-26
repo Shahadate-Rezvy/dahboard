@@ -56,6 +56,7 @@ def views(link):
                                                        #'Sunburst',
                                                        'Histogram',
                                                        #'Tree maps',
+                                                       'custom'
                                                         ])  # 'Line plots',
 
             #graph_controls(chart_type=chart_type, df=df, dropdown_options=columns, template=theme_selection)
