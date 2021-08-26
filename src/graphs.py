@@ -101,12 +101,13 @@ def graph_controls(chart_type, df, dropdown_options, template):
         st.sidebar.subheader('Box plot Settings')
 
         try:
+            x_values = st.sidebar.selectbox('X axis', index=length_of_options,options=['Site','Month'])
             y_values = st.sidebar.selectbox('Select Biomarker', index=length_of_options, options=dropdown_options)
             outliers = st.sidebar.selectbox('Show outliers', options=[False, 'all', 'outliers', 'suspectedoutliers'])
             
             log_y = st.sidebar.selectbox('Log axis on y', options=[False, True])
             plot = px.box(data_frame=df, x='Site',
-                          y=y_values, color='Site'
+                          y=y_values, color='Site',
                           log_y=log_y, 
                           #boxmode=boxmode, 
                           points=outliers,
