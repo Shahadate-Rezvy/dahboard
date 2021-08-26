@@ -106,7 +106,7 @@ def graph_controls(chart_type, df, dropdown_options, template):
             
             log_y = st.sidebar.selectbox('Log axis on y', options=[False, True])
             plot = px.box(data_frame=df, x='Site',
-                          y=y_values, 
+                          y=y_values, color='Site'
                           log_y=log_y, 
                           #boxmode=boxmode, 
                           points=outliers,
