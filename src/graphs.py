@@ -106,7 +106,7 @@ def graph_controls(chart_type, df, dropdown_options, template):
             outliers = st.sidebar.selectbox('Show outliers', options=[False, 'all', 'outliers', 'suspectedoutliers'])
             
             log_y = st.sidebar.selectbox('Log axis on y', options=[False, True])
-            plot = px.box(data_frame=df, x='Site',
+            plot = px.box(data_frame=df, x=x_values,
                           y=y_values, color='Site',
                           log_y=log_y, 
                           #boxmode=boxmode, 
