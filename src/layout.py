@@ -1,5 +1,6 @@
 import streamlit as st
-from src.graph_controls import graph_controls
+#from src.graph_controls import graph_controls
+from src.graphs import graph_controls
 from src.utility import load_dataframe
 from streamlit.components.v1 import iframe
 
