@@ -55,7 +55,7 @@ def views(link):
                                                        'Pie Charts',
                                                        #'Density heatmaps',
                                                        #'Sunburst',
-                                                       'Histogram',
+                                                       #'Histogram',
                                                        #'Tree maps',
                                                        'custom'
                                                         ])  # 'Line plots',
