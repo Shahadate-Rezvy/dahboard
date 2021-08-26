@@ -108,8 +108,7 @@ def graph_controls(chart_type, df, dropdown_options, template):
             plot = px.box(data_frame=df, x=x_values,
                           y=y_values, color='Site',
                           #log_y=log_y, 
-                          #boxmode=boxmode, 
-                          points=outliers,)                          )
+                          #boxmode=boxmode, points=outliers )
                         
             xstart=(df[y_values].mean()+df[y_values].std())
             xstart1=(df[y_values].mean()+2*df[y_values].std())
