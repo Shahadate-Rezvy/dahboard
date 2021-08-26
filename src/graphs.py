@@ -46,6 +46,32 @@ def graph_controls(chart_type, df, dropdown_options, template):
             print(e)
 
 
+    if chart_type == 'Box plots':
+
+        try:
+            x_values = st.sidebar.selectbox('X axis', index=length_of_options,options=dropdown_options)
+            y_values = st.sidebar.selectbox('Y axis',index=length_of_options, options=dropdown_options)
+            plot = px.box(data_frame=df, x=x_values,
+                          y=y_values, color='Site',  )
+                        
+            xstart=(df[y_values].mean()+df[y_values].std())
+            xstart1=(df[y_values].mean()+2*df[y_values].std())
+            xstart2=(df[y_values].mean()+3*df[y_values].std())
+            
+            
+            xend=(df[y_values].mean()-df[y_values].std())
+            xend1=(df[y_values].mean()-2*df[y_values].std())
+            xend2=(df[y_values].mean()-3*df[y_values].std())
+            plot.add_shape(dict(type="rect", x0=-1,x1=6, y0=xstart2, y1=xend2, fillcolor='red',
+                                opacity=0.1),    row="all",    col="all",)
+            plot.add_shape(dict(type="rect", x0=-1,x1=6, y0=xstart1, y1=xend1, fillcolor='yellow',
+                                opacity=0.1),    row="all",    col="all",)
+            plot.add_shape(dict(type="rect", x0=-1,x1=6, y0=xstart, y1=xend, fillcolor='turquoise',
+                                opacity=0.1),    row="all",    col="all",)
+
+
+        except Exception as e:
+            print(e)
 
 
     if chart_type == 'Violin plots':
@@ -80,8 +106,6 @@ def graph_controls(chart_type, df, dropdown_options, template):
             print(e)
     
     if chart_type == 'custom':
-        st.sidebar.subheader("custom Settings")
-
         try:
             plot = px.box(data_frame=df, x='Site', y='ALT',color='Site',template=template)
             xstart=(df['ALT'].mean()+df['ALT'].std())
@@ -97,37 +121,6 @@ def graph_controls(chart_type, df, dropdown_options, template):
             print(e)
 
 
-    if chart_type == 'Box plots':
-        st.sidebar.subheader('Box plot Settings')
-
-        try:
-            x_values = st.sidebar.selectbox('X axis', index=length_of_options,options=['Site','Month'])
-            y_values = st.sidebar.selectbox('Y axis', index=length_of_options, options=dropdown_options)
-            outliers = st.sidebar.selectbox('Show outliers', options=[False, 'all', 'outliers', 'suspectedoutliers'])
-            #log_y = st.sidebar.selectbox('Log axis on y', options=[False, True])
-            plot = px.box(data_frame=df, x=x_values,
-                          y=y_values, color='Site',points=outliers )
-                          #log_y=log_y, 
-                          #boxmode=boxmode, points=outliers )
-                        
-            xstart=(df[y_values].mean()+df[y_values].std())
-            xstart1=(df[y_values].mean()+2*df[y_values].std())
-            xstart2=(df[y_values].mean()+3*df[y_values].std())
-            
-            
-            xend=(df[y_values].mean()-df[y_values].std())
-            xend1=(df[y_values].mean()-2*df[y_values].std())
-            xend2=(df[y_values].mean()-3*df[y_values].std())
-            plot.add_shape(dict(type="rect", x0=-1,x1=6, y0=xstart2, y1=xend2, fillcolor='red',
-                                opacity=0.1),    row="all",    col="all",)
-            plot.add_shape(dict(type="rect", x0=-1,x1=6, y0=xstart1, y1=xend1, fillcolor='yellow',
-                                opacity=0.1),    row="all",    col="all",)
-            plot.add_shape(dict(type="rect", x0=-1,x1=6, y0=xstart, y1=xend, fillcolor='turquoise',
-                                opacity=0.1),    row="all",    col="all",)
-
-
-        except Exception as e:
-            print(e)
 
 
     if chart_type == 'Pie Charts':
