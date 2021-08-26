@@ -102,16 +102,14 @@ def graph_controls(chart_type, df, dropdown_options, template):
 
         try:
             x_values = st.sidebar.selectbox('X axis', index=length_of_options,options=['Site','Month'])
-            y_values = st.sidebar.selectbox('Select Biomarker', index=length_of_options, options=dropdown_options)
+            y_values = st.sidebar.selectbox(''Y axis', index=length_of_options, options=dropdown_options)
             outliers = st.sidebar.selectbox('Show outliers', options=[False, 'all', 'outliers', 'suspectedoutliers'])
-            
-            log_y = st.sidebar.selectbox('Log axis on y', options=[False, True])
+            #log_y = st.sidebar.selectbox('Log axis on y', options=[False, True])
             plot = px.box(data_frame=df, x=x_values,
                           y=y_values, color='Site',
-                          log_y=log_y, 
+                          #log_y=log_y, 
                           #boxmode=boxmode, 
-                          points=outliers,
-                          template=template)
+                          points=outliers,)                          )
                         
             xstart=(df[y_values].mean()+df[y_values].std())
             xstart1=(df[y_values].mean()+2*df[y_values].std())
@@ -121,12 +119,13 @@ def graph_controls(chart_type, df, dropdown_options, template):
             xend=(df[y_values].mean()-df[y_values].std())
             xend1=(df[y_values].mean()-2*df[y_values].std())
             xend2=(df[y_values].mean()-3*df[y_values].std())
+            plot.add_shape(dict(type="rect", x0=-1,x1=6, y0=xstart2, y1=xend2, fillcolor='red',
+                                opacity=0.1),    row="all",    col="all",)
             plot.add_shape(dict(type="rect", x0=-1,x1=6, y0=xstart1, y1=xend1, fillcolor='yellow',
                                 opacity=0.1),    row="all",    col="all",)
             plot.add_shape(dict(type="rect", x0=-1,x1=6, y0=xstart, y1=xend, fillcolor='turquoise',
                                 opacity=0.1),    row="all",    col="all",)
-            plot.add_shape(dict(type="rect", x0=-1,x1=6, y0=xstart2, y1=xend2, fillcolor='red',
-                                opacity=0.1),    row="all",    col="all",)
+
 
         except Exception as e:
             print(e)
