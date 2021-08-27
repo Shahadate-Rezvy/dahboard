@@ -51,23 +51,26 @@ def graph_controls(chart_type, df, dropdown_options, template):
         try:
             x_values = st.sidebar.selectbox('X axis', index=length_of_options,options=dropdown_options)
             y_values = st.sidebar.selectbox('Y axis',index=length_of_options, options=dropdown_options)
+            color_value = st.sidebar.selectbox("Color", index=length_of_options,options=['Site','Month', 'Health score JB'])
+           
             plot = px.box(data_frame=df, x=x_values,
-                          y=y_values, color='Site',  )
+                          y=y_values, color=color_value)
                         
             xstart=(df[y_values].mean()+df[y_values].std())
             xstart1=(df[y_values].mean()+2*df[y_values].std())
             xstart2=(df[y_values].mean()+3*df[y_values].std())
-            
+            x1=df[x_values].nunique()+1
             
             xend=(df[y_values].mean()-df[y_values].std())
             xend1=(df[y_values].mean()-2*df[y_values].std())
             xend2=(df[y_values].mean()-3*df[y_values].std())
-            plot.add_shape(dict(type="rect", x0=-1,x1=16, y0=xstart2, y1=xend2, fillcolor='red',
-                                opacity=0.1),    row="all",    col="all",)
-            plot.add_shape(dict(type="rect", x0=-1,x1=16, y0=xstart1, y1=xend1, fillcolor='yellow',
-                                opacity=0.1),    row="all",    col="all",)
-            plot.add_shape(dict(type="rect", x0=-1,x1=16, y0=xstart, y1=xend, fillcolor='turquoise',
-                                opacity=0.1),    row="all",    col="all",)
+            
+            plot.add_shape(dict(type="rect", x0=-1,x1=x1, y0=xstart2, y1=xend2, fillcolor='red',
+                                opacity=0.2),    row="all",    col="all",)
+            plot.add_shape(dict(type="rect", x0=-1,x1=x1, y0=xstart1, y1=xend1, fillcolor='yellow',
+                                opacity=0.2),    row="all",    col="all",)
+            plot.add_shape(dict(type="rect", x0=-1,x1=x1, y0=xstart, y1=xend, fillcolor='turquoise',
+                                opacity=0.2),    row="all",    col="all",)
 
 
         except Exception as e:
