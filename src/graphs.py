@@ -59,7 +59,7 @@ def graph_controls(chart_type, df, dropdown_options, template):
             xstart=(df[y_values].mean()+df[y_values].std())
             xstart1=(df[y_values].mean()+2*df[y_values].std())
             xstart2=(df[y_values].mean()+3*df[y_values].std())
-            x1=df[x_values].nunique()+1
+            x1=df[x_values].nunique()+df[color_value].nunique()+1
             
             xend=(df[y_values].mean()-df[y_values].std())
             xend1=(df[y_values].mean()-2*df[y_values].std())
