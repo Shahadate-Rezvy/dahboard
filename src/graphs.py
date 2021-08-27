@@ -65,7 +65,7 @@ def graph_controls(chart_type, df, dropdown_options, template):
             xend1=(df[y_values].mean()-2*df[y_values].std())
             xend2=(df[y_values].mean()-3*df[y_values].std())
             
-            plot.add_shape(dict(type="rect", x0=-1,x1=x_alue, y0=xstart2, y1=xend2, fillcolor='red',
+            plot.add_shape(dict(type="rect", x0=-1,x1=x_value, y0=xstart2, y1=xend2, fillcolor='red',
                                 opacity=0.2),    row="all",    col="all",)
             plot.add_shape(dict(type="rect", x0=-1,x1=x_value, y0=xstart1, y1=xend1, fillcolor='yellow',
                                 opacity=0.2),    row="all",    col="all",)
